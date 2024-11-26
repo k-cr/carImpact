@@ -23,4 +23,25 @@ router.get('/', async (req, res) => {
     }
 })
 
+// Obtener un auto:
+router.get('/:id', async (req, res) => {
+    try {
+        console.log(req.params)
+        const car = await Car.findById(req.params.id);
+        res.json(car);
+    } catch (error) {
+        res.status(400).json({ mensaje: `No se pudo obtener: ${error}`})
+    }
+})
+
+// Actualizar un auto:
+router.put('/:id', async (req, res) => {
+    try {
+        const car = await Car.findByIdAndUpdate(req.params.id, req.body);
+        res.json(car);
+    } catch (error) {
+        res.status(400).json({ mensaje: `No se pudo actualizar: ${error}`})
+    }
+})
+
 module.exports = router;
