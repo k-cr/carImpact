@@ -26,6 +26,10 @@ mongoose.connect(process.env.MONGODB_URI, { useNewUrlParser: true, useUnifiedTop
 const carRoutes = require('./routes/carRoutes');
 app.use('/api/cars', carRoutes);
 
+// Importamos las rutas / modelos
+const accountRoutes = require('./routes/accountRoutes');
+app.use('/api/account', accountRoutes);
+
 // Puerto de conexión
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => console.log(`Servidor corriendo en el puerto ${PORT}`))
